@@ -43,5 +43,5 @@ ping [網址名稱]
 ```
 ![ping示意圖](https://i.imgur.com/S1qTR89.png)
 ### whoami
-查看目前使用者是誰
+查看目前使用者是誰  
 ![whoami示意圖](https://i.imgur.com/sa8Kn6q.png)
