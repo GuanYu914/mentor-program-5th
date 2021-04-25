@@ -2,6 +2,8 @@
 // a, b 輸入範圍 0 - 4294967295 (2 ^ 32 - 1)
 
 function add (a, b) {
+    console.log('二進位A', a)
+    console.log('二進位B', b)
     // 將數值轉換成二進位字串
     var x = a.toString(2)
     var y = b.toString(2)
@@ -10,6 +12,7 @@ function add (a, b) {
     var digitArr_y = []
     var tmp, res = ''
 
+    // 初始化用來做加法運算的位元字串陣列
     for (var i = 0; i < 32; i++) {
         digitArr_x[i] = '0'
         digitArr_y[i] = '0'
@@ -22,8 +25,6 @@ function add (a, b) {
     for (var i = 0; i < y.length; i++) {
         digitArr_y[31-i] = y[y.length-1-i]
     }
-    console.log(digitArr_x)
-    console.log(digitArr_y)
     
     // 使用加法器進行運算
     tmp = adder32Bit(digitArr_x, digitArr_y, 0)
@@ -31,8 +32,8 @@ function add (a, b) {
 
     // 將結果轉成 10 進位回傳
     res = tmp.c.toString()
-    res += tmp.s.replace(/\s/g, '') 
-    console.log(res)   
+    res += tmp.s.replace(/\s/g, '')  // 將字串中的空白刪除
+    // console.log(res)   
     res = parseInt(res, 2)
     
     return res
@@ -96,4 +97,4 @@ console.log(adder32Bit([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 0))
 */
 
-console.log(add(4294967295, 4294967295))
+console.log('\nA + B 結果為: ', add(4294967295, 4294967295))
