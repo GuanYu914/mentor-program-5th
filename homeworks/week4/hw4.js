@@ -8,26 +8,25 @@
  * 還有一件事情要提醒大家，Twitch API 有兩個版本，一個是最新版（New Twitch API，代號 Helix），一個是舊版的（Twitch API v5，代號 kraken），我們這次要串接的是舊版的，不要搞錯版本囉。
  */
 
-
 const request = require('request')
 
-let urlTarget = 'https://api.twitch.tv/kraken/games/top'
+const urlTarget = 'https://api.twitch.tv/kraken/games/top'
 
 const options = {
   url: urlTarget,
   headers: { // 添加使用舊版 Twitch API 的規範 Header
-    'Accept': 'application/vnd.twitchtv.v5+json', // 舊版 API 都必須添加的
+    Accept: 'application/vnd.twitchtv.v5+json', // 舊版 API 都必須添加的
     'Client-ID': 'c1yk5e1n85nan22a60u0qzvjyu2rpf' // 申請使用 Twitch api 的 Client ID
   }
-};
+}
 
 function callback(error, response, body) {
-  if (!error && response.statusCode == 200) {
-    const info = JSON.parse(body);
+  if (!error && response.statusCode === 200) {
+    const info = JSON.parse(body)
     for (let i = 0; i < info.top.length; i++) { // 詳細 JSON 回傳格式請參閱 https://dev.twitch.tv/docs/v5/reference/games
-        console.log(`${info.top[i].viewers} ${info.top[i].game.name}`);
+      console.log(`${info.top[i].viewers} ${info.top[i].game.name}`)
     }
   }
 }
 
-request(options, callback); // 發送 Request 
+request(options, callback) // 發送 Request

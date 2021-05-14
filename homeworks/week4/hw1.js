@@ -4,7 +4,7 @@
  * 身為秋秋鞋的好朋友，這個重責大任當然就交給你了！
  * 請閱讀開頭給的 API 文件並串接，用 node.js 寫出一個程式，執行後會在 console 列出前十本書籍的 id 以及書名。
  * 順帶一提，叫做秋秋鞋是因為他很喜歡秋天。
- * 
+ *
  * 範例.
  * node hw1.js
  * 1 克雷的橋
@@ -16,11 +16,10 @@
 const request = require('request')
 
 const host = 'https://lidemy-book-store.herokuapp.com/books?_limit=10'
- 
-request(host, 
-         function (error, response, body) {
-         const json = JSON.parse(body)
-        for (let i = 0; i < 10; i++) {
-        console.log(`${i+1}. ${json[i].name}`);
-        }
-});
+
+request(host, (error, response, body) => {
+  const json = JSON.parse(body)
+  for (let i = 0; i < 10; i++) {
+    console.log(`${i + 1}. ${json[i].name}`)
+  }
+})
