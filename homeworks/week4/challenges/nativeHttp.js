@@ -77,18 +77,20 @@ function apiList() {
   }
 
   const req = https.request(options, (res) => {
-    console.log('HTTP 狀態代碼: ', res.statusCode)
-    res.on('data', (d) => {
-      const json = JSON.parse(d)
-      for (let i = 0; i < json.length; i++) {
-        console.log(`${json[i].id} ${json[i].name}`)
-      }
-    })
+    if (res.statusCode >= 200 && res.statusCode < 300) {
+      res.on('data', (d) => {
+        const json = JSON.parse(d)
+        for (let i = 0; i < json.length; i++) {
+          console.log(`${json[i].id} ${json[i].name}`)
+        }
+      })
+    } else {
+      console.log(`http 錯誤代碼：${res.statusCode}`)
+    }
   })
 
   req.on('error', (e) => {
-    console.log('HTTP 錯誤代碼')
-    console.error(e)
+    console.log(`發送 req 錯誤：${e}`)
   })
   req.end()
 }
@@ -102,15 +104,10 @@ function apiRead(id) {
   }
 
   const req = https.request(options, (res) => {
-    if (res.statusCode === 200) {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
       res.on('data', (d) => {
         const json = JSON.parse(d)
-        // console.log(json)
-        if (json.name === undefined) {
-          console.log('找不到該書籍名稱')
-        } else {
-          console.log(`${json.name}`)
-        }
+        console.log(`${json.name}`)
       })
     } else {
       console.log('HTTP 狀態代碼: ', res.statusCode)
@@ -118,8 +115,7 @@ function apiRead(id) {
   })
 
   req.on('error', (e) => {
-    console.log('HTTP 錯誤代碼')
-    console.error(e)
+    console.log(`發送 req 錯誤：${e}`)
   })
   req.end()
 }
@@ -133,13 +129,16 @@ function apiDelete(id) {
   }
 
   const req = https.request(options, (res) => {
-    if (res.statusCode === 200) {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
       console.log(`已刪除位於 ${id} 的書籍`)
     } else {
       console.log('HTTP 狀態代碼: ', res.statusCode)
     }
   })
 
+  req.on('error', (e) => {
+    console.log(`發送 req 錯誤：${e}`)
+  })
   req.end()
 }
 
@@ -162,7 +161,7 @@ function apiCreate(name) {
 
   const req = https.request(options, (res) => {
     res.setEncoding('utf8')
-    if (res.statusCode === 201) {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
       console.log('新增書籍成功！')
     } else {
       console.log('HTTP 狀態代碼: ', res.statusCode)
@@ -170,7 +169,7 @@ function apiCreate(name) {
   })
 
   req.on('error', (e) => {
-    console.error(e)
+    console.log(`發送 req 錯誤：${e}`)
   })
 
   req.write(postData)
@@ -195,7 +194,7 @@ function apiUpdate(id, name) {
 
   const req = https.request(options, (res) => {
     res.setEncoding('utf8')
-    if (res.statusCode === 200) {
+    if (res.statusCode >= 200 && res.statusCode < 300) {
       console.log(`已更新位於編號 ${id} 的名稱為 ${name}`)
     } else {
       console.log('HTTP 狀態代碼: ', res.statusCode)
@@ -203,7 +202,7 @@ function apiUpdate(id, name) {
   })
 
   req.on('error', (e) => {
-    console.error(e)
+    console.log(`發送 req 錯誤：${e}`)
   })
 
   req.write(postData)

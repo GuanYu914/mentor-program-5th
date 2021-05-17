@@ -21,7 +21,7 @@ let urlGetGameID = 'https://api.twitch.tv/helix/games'
 
 request.post(urlGetAPPAccessToken,
   function optionalCallback(error, httpResponse, body) { // 拿到 OAuth 的授權
-    if (!error && httpResponse.statusCode === 200) {
+    if (!error && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
       const key = JSON.parse(body) // 拿到 OAuth 的 Access Token
       // console.log(key.access_token)
 
@@ -37,7 +37,7 @@ request.post(urlGetAPPAccessToken,
           }
         },
         function(error, httpResponse, body) {                         // 發送 req，取得遊戲的 ID
-          if (!error && httpResponse.statusCode === 200) {
+          if (!error && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
             const gameInfo = JSON.parse(body)
             // console.log(gameInfo)
             if (gameInfo.data.length === 0) {                         // 若找不到，則回傳的 data.length 長度會是 0
@@ -59,7 +59,7 @@ request.post(urlGetAPPAccessToken,
                 }
               },
               function(error, httpResponse, body) {                   // 根據遊戲 ID 列出串流列表
-                if (!error && httpResponse.statusCode === 200) {
+                if (!error && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
                   const streamInfo = JSON.parse(body)
 
                   if (streamInfo.data.length === 0) {
@@ -92,7 +92,7 @@ request.post(urlGetAPPAccessToken,
                         }
                       },
                       function(error, httpResponse, body) {
-                        if (!error && httpResponse.statusCode === 200) {
+                        if (!error && httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
                           tmp = JSON.parse(body)
 
                           for (let i = 0; i < tmp.data.length; i++) {
