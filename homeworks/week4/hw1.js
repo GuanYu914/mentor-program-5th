@@ -18,8 +18,16 @@ const request = require('request')
 const host = 'https://lidemy-book-store.herokuapp.com/books?_limit=10'
 
 request(host, (error, response, body) => {
-  const json = JSON.parse(body)
-  for (let i = 0; i < 10; i++) {
-    console.log(`${i + 1}. ${json[i].name}`)
+  let json
+  if (!error && response.statusCode >= 200 & response.statusCode < 300) {
+    try {
+      json = JSON.parse(body)
+    } catch (e) {
+      console.log(`解析 json 檔案時，發生錯誤：${e}`)
+      return
+    }
+    for (let i = 0; i < 10; i++) {
+      console.log(`${i + 1}. ${json[i].name}`)
+    }
   }
 })

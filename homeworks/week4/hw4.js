@@ -21,10 +21,16 @@ const options = {
 }
 
 function callback(error, response, body) {
-  if (!error && response.statusCode === 200) {
-    const info = JSON.parse(body)
-    for (let i = 0; i < info.top.length; i++) { // 詳細 JSON 回傳格式請參閱 https://dev.twitch.tv/docs/v5/reference/games
-      console.log(`${info.top[i].viewers} ${info.top[i].game.name}`)
+  let jsonInfo
+  if (!error && response.statusCode >= 200 && response.statusCode < 300) {
+    try {
+      jsonInfo = JSON.parse(body)
+    } catch (e) {
+      console.log(`解析 json 時發生錯誤：${e}`)
+      return
+    }
+    for (let i = 0; i < jsonInfo.top.length; i++) { // 詳細 JSON 回傳格式請參閱 https://dev.twitch.tv/docs/v5/reference/games
+      console.log(`${jsonInfo.top[i].viewers} ${jsonInfo.top[i].game.name}`)
     }
   }
 }

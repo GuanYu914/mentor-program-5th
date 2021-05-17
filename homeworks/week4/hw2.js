@@ -45,10 +45,20 @@ switch (op) {
 function apiList() {
   host += '?_limit=20'
   request(host, (error, response, body) => {
-    const json = JSON.parse(body)
-    console.log('印出前 20 名的書籍')
-    for (let i = 0; i < 20; i++) {
-      console.log(`${i + 1}. ${json[i].name}`)
+    if (!error && response.statusCode >= 200 && response.statusCode < 300) {
+      let json
+      try {
+        json = JSON.parse(body)
+      } catch (e) {
+        console.log(`解析 json 檔案時，發生錯誤：${e}`)
+        return
+      }
+      console.log('印出前 20 名的書籍')
+      for (let i = 0; i < 20; i++) {
+        console.log(`${i + 1}. ${json[i].name}`)
+      }
+    } else {
+      console.log(`HTTP 狀態碼為：${response.statusCode}`)
     }
   })
 }
@@ -56,36 +66,61 @@ function apiList() {
 function apiRead(id) {
   host += `/${id}`
   request(host, (error, response, body) => {
-    const json = JSON.parse(body)
-    console.log(json.name)
+    if (!error && response.statusCode >= 200 && response.statusCode < 300) {
+      let json = JSON.parse(body)
+      try {
+        json = JSON.parse(body)
+      } catch (e) {
+        console.log(`解析 json 檔案時，發生錯誤：${e}`)
+        return
+      }
+      console.log(json.name)
+    } else {
+      console.log(`HTTP 狀態碼為：${response.statusCode}`)
+    }
   })
 }
 
 function apiDelete(id) {
+  let errFlag = false
   host += `/${id}`
   request.del({
     url: host,
     function(err, httpResponse, body) {
-      console.log(body)
+      // 此 req 成功時不會有任何 res
+      if (err) {
+        console.log(`接收 req 錯誤：${err}`)
+        errFlag = true
+      }
     }
   })
-  console.log(`已刪除位於 ${id} 所在的書籍`)
+  if (!errFlag) {
+    console.log(`已刪除位於 ${id} 所在的書籍`)
+  }
 }
 
 function apiCreate(bookName) {
+  let errFlag = false
   request.post({
     url: host,
     form: {
       name: bookName
     },
     function(err, httpResponse, body) {
-      console.log(body)
+      // 此 req 成功時不會有任何 res
+      if (err) {
+        console.log(`接收 req 錯誤：${err}`)
+        errFlag = true
+      }
     }
   })
-  console.log(`已新增 ${bookName} 書籍`)
+  if (!errFlag) {
+    console.log(`已新增 ${bookName} 書籍`)
+  }
 }
 
 function apiUpdate(id, bookName) {
+  let errFlag = false
   host += `/${id}`
   request.patch({
     url: host,
@@ -93,8 +128,14 @@ function apiUpdate(id, bookName) {
       name: bookName
     },
     function(err, httpResponse, body) {
-      console.log(body)
+      // 此 req 成功時不會有任何 res
+      if (err) {
+        console.log(`接收 req 錯誤：${err}`)
+        errFlag = true
+      }
     }
   })
-  console.log(`已更新位於 ${id} 的書籍，並改名為${bookName}`)
+  if (!errFlag) {
+    console.log(`已更新位於 ${id} 的書籍，並改名為${bookName}`)
+  }
 }

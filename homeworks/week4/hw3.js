@@ -19,13 +19,15 @@ getInfoByName(process.argv[2])
 function getInfoByName(searchName) {
   url += `/name/${searchName}`
   request(url, (error, response, body) => {
-    // 抓蟲用
-    // console.error('error:', error)
-    // console.log('statusCode:', response && response.statusCode)
-    // console.log('body:', body)
-    const json = JSON.parse(body)
-    // console.log(json)
-    if (response.statusCode === 200) {
+    let json = ''
+    if (!error && response.statusCode >= 200 && response.statusCode < 300) {
+      try {
+        json = JSON.parse(body)
+      } catch (e) {
+        console.log(`解析 json 檔案時，發生錯誤：${e}`)
+        return
+      }
+
       for (let i = 0; i < json.length; i++) {
         console.log('============')
         console.log(`國家：${json[i].name}`)
