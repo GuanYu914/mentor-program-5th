@@ -32,14 +32,19 @@ const process = require('process')
 
 const input = process.argv[2]
 let BASEURL = `https://lidemy-http-challenge.herokuapp.com/api/books/${input}`
-
-request(BASEURL, (error, response, body) => {
-  console.log('statusCode:', response && response.statusCode) // Print the response status code if a response was received
-  if (response.statusCode === 200) {
-    const json = JSON.parse(body)
-    console.log(json)
-  }
-})
+if (input !== undefined) {
+  request(BASEURL, (error, response, body) => {
+    // console.log('statusCode:', response && response.statusCode) // Print the response status code if a response was received
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      const json = JSON.parse(body)
+      console.log(json)
+    } else {
+      console.log(`HTTP 狀態碼：${response.statusCode}`)
+    }
+  })
+} else {
+  console.log('請輸入要查詢的書籍 ID')
+}
 
 /**
  * 真是太感謝你幫我找到這本書了！
@@ -63,9 +68,12 @@ request.post({
     ISBN: '9789863594475'
   }
 }, (err, httpResponse, body) => {
-  console.log('status code: ', httpResponse.statusCode)
-  const json = JSON.parse(body)
-  console.log(json)
+  if (httpResponse.statusCode >= 200 && httpResponse.statusCode < 300) {
+    const json = JSON.parse(body)
+    console.log(json)
+  } else {
+    console.log(`HTTP 狀態碼：${httpResponse.statusCode}`)
+  }
 })
 */
 
@@ -82,10 +90,11 @@ request.post({
 BASEURL = encodeURI('https://lidemy-http-challenge.herokuapp.com/api/books?q=世界') // 使用 encodeURI 解決 URL 有中文無法正常運作
 
 request(BASEURL, (error, response, body) => {
-  console.log('statusCode:', response.statusCode)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log('statusCode:', response.statusCode)
   }
 })
 */
@@ -103,10 +112,11 @@ request(BASEURL, (error, response, body) => {
 BASEURL = `https://lidemy-http-challenge.herokuapp.com/api/books/23`
 
 request.del(BASEURL, (error, response, body) => {
-  console.log('statusCode:', response.statusCode)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log('statusCode:', response.statusCode)
   }
 })
 */
@@ -133,10 +143,11 @@ const url = `http://${username}:${password}@lidemy-http-challenge.herokuapp.com/
 // console.log(url);
 
 request({ url }, (error, response, body) => {
-  console.log(`status code: ${response.statusCode}`)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log(`status code: ${response.statusCode}`)
   }
 })
 */
@@ -160,10 +171,11 @@ const url = `http://${username}:${password}@lidemy-http-challenge.herokuapp.com/
 // console.log(url);
 
 request.del({ url }, (error, response, body) => {
-  console.log(`status code: ${response.statusCode}`)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log(`status code: ${response.statusCode}`)
   }
 })
 */
@@ -187,11 +199,11 @@ const getURL = encodeURI(`http://${username}:${password}@lidemy-http-challenge.h
 // console.log(url);
 
 request({ url: getURL }, (error, response, body) => {
-  // console.log(error)
-  console.log(`status code: ${response.statusCode}`)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log(`status code: ${response.statusCode}`)
   }
 })
 */
@@ -207,11 +219,12 @@ request.patch({
     ISBN: '9981835423'
   }
 }, (err, response, body) => {
-  console.log('開始更新...')
-  console.log(`status code: ${response.statusCode}`)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
+    console.log('開始更新...')
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log(`status code: ${response.statusCode}`)
   }
 })
 */
@@ -234,7 +247,7 @@ request.patch({
 // const password = 'admin123'
 
 /*
-const getURL = encodeURI(`http://${username}:${password}@lidemy-http-challenge.herokuapp.com/api/v2/sys_info`)
+const getURL = `http://${username}:${password}@lidemy-http-challenge.herokuapp.com/api/v2/sys_info`
 request({
   url: getURL,
   headers: {
@@ -242,11 +255,11 @@ request({
     'User-Agent': 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)' // 偽造的 IE6 Req Header
   }
 }, (error, response, body) => {
-  // console.log(error)
-  console.log(`status code: ${response.statusCode}`)
-  if (response.statusCode === 200) {
+  if (response.statusCode >= 200 && response.statusCode < 300) {
     const json = JSON.parse(body)
     console.log(json)
+  } else {
+    console.log(`status code: ${response.statusCode}`)
   }
 })
 */
@@ -267,7 +280,12 @@ request({
 
 // let input = process.argv[2]
 /*
-request(`https://lidemy-http-challenge.herokuapp.com/lv10?token={duZDsG3tvoA}&num=${input}`, (error, response, body) => {
-  console.log('body:', body)
-})
+request(`https://lidemy-http-challenge.herokuapp.com/lv10?token={duZDsG3tvoA}&num=${input}`,
+  (error, response, body) => {
+    if (response.statusCode >= 200 && response.statusCode < 300) {
+      console.log('結果:', body)
+    } else {
+      console.log(`status code: ${response.statusCode}`)
+    }
+  })
 */
