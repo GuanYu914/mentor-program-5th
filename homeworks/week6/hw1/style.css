@@ -1,0 +1,273 @@
+/* 
+  因為本身不是第五期的學生，所以沒有設計稿輔助實作，只單靠作業上的畫面憑空想像，目前此頁面還會完成 RWD 頁面，等將來有空時再一併補上
+
+  Todo list 待完成的功能
+  - RWD 排版
+    - footer 改成 flex 實作
+    - 菜單圖片那邊，思考如何在 RWD 時，使用垂直排序
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+body{
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif ;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+div.header{
+  width: 100%;
+  z-index: 1;
+  position: relative;
+  /* max-width: 1400px; */
+  /* margin: auto; */
+  /* width: 100%; */
+  /* max-width: 1400px; */
+  /* margin: auto; */
+}
+
+div.header__wrap{
+  position: sticky;
+  top: 0;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+a.header__wrap__logo{
+  text-decoration: none;
+  font-size: 36px;
+  color: rgb(70, 181, 70);
+  font-weight: 900;
+}
+
+nav.header__wrap__nav a{
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 12px;
+  color: black;
+  font-weight: 500;
+}
+
+nav.header__wrap__nav a:nth-child(1){
+  box-sizing: border-box;
+  color: white;
+  padding: 2px 0;
+  border: 6px solid rgb(253, 135, 155);
+  border-radius: 12px;
+  background-color:rgb(253, 135, 155);
+  font-weight: 300;
+}
+
+div.banner{
+  max-width: 1400px;
+  margin: auto;
+  position: relative;
+  z-index: -1;
+}
+
+div.banner__img{
+  height: 600px;
+  background: url('https://picsum.photos/id/292/1400/600') no-repeat center center;
+  background-size: cover;
+}
+
+div.banner__p{  
+  position: absolute;
+  /* 此做法可以將文字放到圖片正中間，但是不知道 translate 的用途 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 58px;
+  font-weight: 500;
+  text-align: center;
+}
+
+div.intro{
+  text-align: center;
+  margin-top: 40px;
+}
+
+div.intro__heading{
+  margin-bottom: 40px;
+}
+
+div.intro__icon_rectangle{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 32px;
+  margin-right: 8px;
+  background: rgb(129, 240, 175);
+}
+
+p.intro__heading__msg{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+p.intro__p{
+  font-size: 16px;
+  letter-spacing: 1px;
+  line-height: 1.8em;
+}
+
+div.intro__order_button a{
+  /* margin-top: 18px; */
+  margin: 18px 20px 0px 20px;
+  font-size: 22px;
+  padding: 36px 82px;
+  display: inline-block;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+div.intro__order_button a:first-child{
+  background:cadetblue;
+  color: darkgreen;
+}
+
+div.intro__order_button a:last-child{
+  background:rgb(236, 243, 103);
+  color: darkgreen;
+}
+
+div.menu{
+  text-align: center;
+  margin-top: 40px;
+}
+
+div.menu__icon_rectangle{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 32px;
+  margin-right: 8px;
+  background: rgb(129, 240, 175);
+}
+
+p.menu__heading__msg{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 22px;
+  font-weight: 700;
+  white-space: pre;
+}
+
+div.menu__food_gallery{
+  display: flex;
+  max-width: 1400px;
+  margin: 20px auto;
+}
+
+div.menu__food_gallery div{
+  width: 350px;
+  height: 350px;
+}
+
+div.menu__food_gallery div:nth-child(1){
+  background: url('https://picsum.photos/350/350?random=1') no-repeat center center;
+  background-size: cover;
+}
+
+div.menu__food_gallery div:nth-child(2){
+  background: url('https://picsum.photos/350/350?random=2') no-repeat center center;
+  background-size: cover;
+}
+
+div.menu__food_gallery div:nth-child(3){
+  background: url('https://picsum.photos/350/350?random=3') no-repeat center center;
+  background-size: cover;
+}
+
+div.menu__food_gallery div:nth-child(4){
+  background: url('https://picsum.photos/350/350?random=4') no-repeat center center;
+  background-size: cover;
+}
+
+div.where_we_are{
+  text-align: center;
+  margin-top: 40px;
+}
+
+div.where_we_are__icon_rectangle{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 32px;
+  margin-right: 8px;
+  background: rgb(129, 240, 175);
+}
+
+p.where_we_are__heading__msg{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 22px;
+  font-weight: 700;
+  white-space: pre;
+}
+
+/*  bug@5.23
+    iframe 縮放時，橫向會有空間 
+*/
+div.where_we_are__map_view iframe{
+  margin-top: 20px;
+  width: 100%;
+  height: 600px;
+  max-width: 1400px;
+  border: 0px none;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+div.footer{
+  display: flex;
+  justify-content: space-between;
+  max-width: 1400px;
+  background-color: rgb(235, 235, 235);
+  margin: 40px auto 20px auto;
+  padding: 18px;
+  box-sizing: border-box;
+
+}
+
+div.footer__info{
+  display: flex;
+  flex-direction: column;
+}
+
+p.footer__social_links__logo{
+  color: rgb(70, 181, 70);
+  font-size: 36px;
+}
+
+a.footer__social_links__facebook{
+  text-decoration: none;
+  color: black;
+}
+
+a.footer__social_links__instagram{
+  text-decoration: none;
+  color: black;
+}
+
+a.footer__social_links__youtube{
+  text-decoration: none;
+  color: black;
+}
+
+/* @media screen and (max-width: 1400px){
+  div.menu__food_gallery div{
+    flex-direction: column;
+  }
+} */
