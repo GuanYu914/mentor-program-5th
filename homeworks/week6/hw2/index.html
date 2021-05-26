@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./style.css">
+  <title>新拖延運動報名表單</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="markTop"></div>
+    <div class="header">
+      <h1 class="heading">新拖延運動報名表單</h1>
+      <p class="activity-date">活動日期：2020/12/10 ~ 2020/12/11</p>
+      <p class="activity-location">活動地點：台北市大安區新生南路二段1號</p>
+      <p class="attention">*必填</p>
+    </div>
+
+    <div class="questions">
+      <div class="name">
+        <h2 class="heading">暱稱 <span>*</span></h2>
+        <input name="name" type="text" size="">
+      </div>
+      <div class="email">
+        <h2 class="heading">電子郵件 <span>*</span></h2>
+        <input name="email" type="email">
+      </div>
+      <div class="phone">
+        <h2 class="heading">手機號碼 <span>*</span></h2>
+        <input name="phone" type="number">
+      </div>
+      <div class="type">
+        <h2 class="heading">報名類型 <span>*</span></h2>
+        <label>
+          <input name="type-choice" type="radio">躺在床上用想像力實作
+        </label>
+        <label>
+          <input name="type-choice" type="radio">趴在地上滑手機找現成的
+        </label>
+      </div>
+      <div class="howToGet">
+        <h2 class="heading">怎麼知道這個活動的？ <span>*</span></h2>
+        <input name="HowToGet-why" type="text">
+      </div>
+      <div class="others">
+        <h2 class="heading">其他？ <span>*</span></h2>
+        <p class="comment">對活動的一些建議</p>
+        <input name="suggestions" type="text">
+      </div>
+      <div class="submit">
+        <button class="submit" onclick="location.href='#'">提交</button>
+        <p class="warning">請勿透過表單送出您的密碼。</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p class="copyRight">© 2020 © Copyright. All rights Reserved.</p>
+  </div>
+</body>
+
+</html>
