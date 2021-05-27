@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #ccc;
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif ;
+}
+
+div.container .markTop{
+  width: 100%;
+  height: 10px;
+  background-color: rgb(255, 204, 0);
+}
+
+div.container{
+  max-width: 645px;
+  background-color: #fff;
+  margin: 160px auto 120px;
+  padding-bottom: 80px;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+@media screen and (max-width: 700px) {
+  div.container{
+    width: 90vw;
+  }
+}
+
+div.header{
+  margin: 60px auto 20px 10px;
+}
+
+div.header .heading{
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+div.header .activity-date{
+  font-weight: 300;
+}
+
+div.header .activity-location{
+  font-weight: 300;
+}
+
+div.header .attention{
+  color: red;
+  margin-top: 18px;
+  font-weight: 500;
+}
+
+div.questions{
+  margin-top: 40px;
+  margin-left: 10px;
+}
+
+div.questions h2{
+  font-weight: 400;
+}
+
+div.questions div:nth-child(n+1){
+  margin-top: 40px;
+}
+
+div.questions span:nth-child(n){
+  color: red;
+}
+
+div.questions input[type=text]{
+  height: 28px;
+  width: 200px;
+  border: 1px rgb(186, 186, 186) solid;
+  margin-top: 16px;
+}
+
+div.questions input[type=email]{
+  height: 28px;
+  width: 200px;
+  border: 1px rgb(186, 186, 186) solid;
+  margin-top: 16px;
+}
+
+div.questions input[type=number]{
+  height: 28px;
+  width: 200px;
+  border: 1px rgb(186, 186, 186) solid;
+  margin-top: 16px;
+}
+
+div.questions label{
+  margin-top: 16px;
+  display: block;
+}
+
+div.questions input{
+  margin-right: 8px;
+  font-size: 20px;
+}
+
+div.submit button.submit{
+  width: 90px;
+  height: 38px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(255, 204, 0);
+}
+
+div.submit p.warning{
+  margin-top: 20px;
+}
+
+div.footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  height: 60px;
+  padding: 10px;
+  background-color: black;
+}
+
+div.footer p{
+  color: rgb(213, 213, 213);
+}
