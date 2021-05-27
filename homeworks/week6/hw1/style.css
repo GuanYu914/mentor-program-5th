@@ -1,13 +1,33 @@
 /* 
   因為本身不是第五期的學生，所以沒有設計稿輔助實作，只單靠作業上的畫面憑空想像，目前此頁面還會完成 RWD 頁面，等將來有空時再一併補上
 
-  Todo list 待完成的功能
-  - RWD 排版
-    - footer 改成 flex 實作
-    - 菜單圖片那邊，思考如何在 RWD 時，使用垂直排序
+  與 ver1 版本差異
+  - navigation bar 
+    - 新增 RWD 排版
+    - hover 項目動畫
+
+  - 按鈕
+    - hover 縮放動畫
+
+  - footer
+    - 新增 RWD 排版
+    - 新增最下面 copyright 區塊
+    - 新增 RWD 排版
+  
+  - sections
+    - 菜單搶先看
+      - 新增 RWD 排版
+
+    - 我們在哪裡
+      - 增加左右 margin
+
+    - 吃過都說好
+
+  - 整體頁面
+     - 調整部分字體大小跟權重
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Roboto:wght@300;400;700&display=swap');
 
 body{
   font-family: 'Noto Sans TC', 'Roboto', sans-serif ;
@@ -19,19 +39,10 @@ body{
   list-style-type: none;
 }
 
-div.header{
-  width: 100%;
-  z-index: 1;
-  position: relative;
-  /* max-width: 1400px; */
-  /* margin: auto; */
-  /* width: 100%; */
-  /* max-width: 1400px; */
-  /* margin: auto; */
-}
-
 div.header__wrap{
-  position: sticky;
+  width: 100%;
+  position: fixed;
+  z-index: 2;
   top: 0;
   background-color: white;
   display: flex;
@@ -48,47 +59,66 @@ a.header__wrap__logo{
   font-weight: 900;
 }
 
-nav.header__wrap__nav a{
-  text-decoration: none;
+nav.header__wrap__nav{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
   font-size: 18px;
-  margin: 0 12px;
+}
+
+nav.header__wrap__nav a{
   color: black;
+  font-size: 18px;
   font-weight: 500;
+  text-decoration: none;
+  margin-left: 16px;
+  border-radius: 8px;
+  padding: 12px 24px;
+  transition: background 0.1s;
+}
+
+nav.header__wrap__nav a:hover{
+  color: white;
+  background-color: #ff7286;
 }
 
 nav.header__wrap__nav a:nth-child(1){
-  box-sizing: border-box;
   color: white;
-  padding: 2px 0;
-  border: 6px solid rgb(253, 135, 155);
-  border-radius: 12px;
-  background-color:rgb(253, 135, 155);
-  font-weight: 300;
+  background-color: #ff7286;
 }
 
 div.banner{
-  max-width: 1400px;
-  margin: auto;
   position: relative;
+  max-width: 1400px;
+  height: 450px;
+  margin: auto;  
   z-index: -1;
+  background: url(./bg.jpg) center/cover no-repeat;
 }
 
-div.banner__img{
-  height: 600px;
-  background: url('https://picsum.photos/id/292/1400/600') no-repeat center center;
-  background-size: cover;
+/* 將 banner 加上較黑的背景 */
+div.banner:after{
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
+/* 此做法可以將文字放到圖片正中間，但是不知道 translate 的用途 */
 div.banner__p{  
   position: absolute;
-  /* 此做法可以將文字放到圖片正中間，但是不知道 translate 的用途 */
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-  font-size: 58px;
-  font-weight: 500;
+  font-size: 62px;
+  font-weight: 700;
   text-align: center;
+  z-index: 1;
 }
 
 div.intro{
@@ -112,34 +142,38 @@ div.intro__icon_rectangle{
 p.intro__heading__msg{
   display: inline-block;
   vertical-align: middle;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 500;
 }
 
 p.intro__p{
   font-size: 16px;
   letter-spacing: 1px;
-  line-height: 1.8em;
+  line-height: 2em;
 }
 
 div.intro__order_button a{
-  /* margin-top: 18px; */
   margin: 18px 20px 0px 20px;
   font-size: 22px;
   padding: 36px 82px;
   display: inline-block;
   border-radius: 10px;
   text-decoration: none;
+  transition: transform 0.1s;
 }
 
 div.intro__order_button a:first-child{
-  background:cadetblue;
-  color: darkgreen;
+  background:#a8e8e1;
+  color: #3e613d;
 }
 
 div.intro__order_button a:last-child{
-  background:rgb(236, 243, 103);
-  color: darkgreen;
+  background:#f9f9b5;
+  color: #3e613d;
+}
+
+div.intro__order_button a:hover{
+  transform: scale(1.1);
 }
 
 div.menu{
@@ -159,8 +193,8 @@ div.menu__icon_rectangle{
 p.menu__heading__msg{
   display: inline-block;
   vertical-align: middle;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 500;
   white-space: pre;
 }
 
@@ -170,29 +204,83 @@ div.menu__food_gallery{
   margin: 20px auto;
 }
 
-div.menu__food_gallery div{
-  width: 350px;
-  height: 350px;
+div.menu__food_gallery__item{
+  width: 25%;
 }
 
-div.menu__food_gallery div:nth-child(1){
-  background: url('https://picsum.photos/350/350?random=1') no-repeat center center;
-  background-size: cover;
+div.menu__food_gallery__item img{
+  width: 100%;
 }
 
-div.menu__food_gallery div:nth-child(2){
-  background: url('https://picsum.photos/350/350?random=2') no-repeat center center;
-  background-size: cover;
+div.comment{
+  max-width: 1400px;
+  margin: 60px auto 0px;
 }
 
-div.menu__food_gallery div:nth-child(3){
-  background: url('https://picsum.photos/350/350?random=3') no-repeat center center;
-  background-size: cover;
+div.comment__heading{
+  text-align: center;
 }
 
-div.menu__food_gallery div:nth-child(4){
-  background: url('https://picsum.photos/350/350?random=4') no-repeat center center;
-  background-size: cover;
+div.comment__heading__icon_rectangle{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 32px;
+  margin-right: 8px;
+  background: rgb(129, 240, 175);
+}
+
+p.comment__heading__msg{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 24px;
+  font-weight: 500;
+  white-space: pre;
+}
+
+div.comment__info_block{
+  display: flex;
+  margin-top: 52px;
+}
+
+div.comment__info_block__people_says{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 18px;
+  border: 2px #e8efee solid;
+  transition: all 0.3s;
+}
+
+div.comment__info_block__people_says:hover{
+  background-color: rgb(116, 211, 155);
+  color: white;
+}
+
+div.comment__info_block__people_says:nth-child(2){
+  margin: 0 10px;
+}
+
+div.comment__info_block__people_says img{
+  width: 80px;
+  height: auto;
+  position: relative;
+  top: -50px;
+}
+
+p.comment__info_block__people_says__name{
+  position: relative;
+  bottom: 40px;
+  font-weight: 500;
+}
+
+p.comment__info_block__people_says__comment{
+  position: relative;
+  bottom: 26px;
+  font-weight: 400;
+  line-height: 2em;
 }
 
 div.where_we_are{
@@ -212,29 +300,30 @@ div.where_we_are__icon_rectangle{
 p.where_we_are__heading__msg{
   display: inline-block;
   vertical-align: middle;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: 24px;
+  font-weight: 500;
   white-space: pre;
 }
 
-/*  bug@5.23
-    iframe 縮放時，橫向會有空間 
-*/
+div.where_we_are__map_view{
+  margin: 0 14px;
+}
+
 div.where_we_are__map_view iframe{
+  box-sizing: border-box;
   margin-top: 20px;
   width: 100%;
   height: 600px;
   max-width: 1400px;
   border: 0px none;
   padding: 0px;
-  box-sizing: border-box;
 }
 
 div.footer{
   display: flex;
   justify-content: space-between;
   max-width: 1400px;
-  background-color: rgb(235, 235, 235);
+  background-color: #e8efee;
   margin: 40px auto 20px auto;
   padding: 18px;
   box-sizing: border-box;
@@ -266,8 +355,58 @@ a.footer__social_links__youtube{
   color: black;
 }
 
-/* @media screen and (max-width: 1400px){
-  div.menu__food_gallery div{
+div.footer__bottom{
+  background-color: #35564b;
+  color: white;
+  text-align: center;
+}
+
+@media(max-width: 768px){
+  div.header__wrap{
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+  
+  nav.header__wrap__nav{
+    display: flex;
+    width: 100%;
+  }
+
+  nav.header__wrap__nav a{
+    flex: auto;   
+    margin-left: 0; 
+    border-radius: 0;
+    text-align: center;
+  }
+
+  div.menu__food_gallery{
     flex-direction: column;
   }
-} */
+
+  div.comment__info_block{
+    flex-direction: column;
+    margin-left: 14px;
+    margin-right: 14px; 
+  }
+
+  div.comment__info_block__people_says:nth-child(n){
+    margin: 40px auto;
+  }
+
+  div.comment__info_block__people_says img{
+    width: 120px;
+  }
+
+  div.menu__food_gallery__item{
+    width: 100%;
+  }
+  div.footer{
+    flex-direction: column;
+  }
+
+  div.footer__social_links{
+    order: -1;
+    margin-bottom: 10px;
+  }
+}
