@@ -1,0 +1,246 @@
+/* [ 待解決 ] 實作上遇到的問題 
+如果沒有打開 faq 的答案，footer 會放在不是底部的地方，直到 faq 的長度超過頁面長度footer 才會貼在底部
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+body{
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif ;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+div.header{
+  width: 100%;;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  background-color: white;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+div.header__wrap{
+  margin: auto;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+a.header__wrap__logo{
+  text-decoration: none;
+  font-size: 36px;
+  color: rgb(70, 181, 70);
+  font-weight: 900;
+}
+
+nav.header__wrap__nav{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 18px;
+}
+
+nav.header__wrap__nav a{
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 16px;
+  border-radius: 8px;
+  padding: 12px 24px;
+  transition: background 0.1s;
+}
+
+nav.header__wrap__nav a:hover{
+  color: white;
+  background-color: #ff7286;
+}
+
+nav.header__wrap__nav a:nth-child(4){
+  color: white;
+  background-color: #ff7286;
+}
+
+div.faq{
+  margin-top: 92px;
+}
+
+div.faq__heading{
+  margin-top: 160px;
+  text-align: center;
+}
+
+div.faq__heading__icon_rectangle{
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 32px;
+  margin-right: 8px;
+  background: rgb(129, 240, 175);
+}
+
+p.faq__heading__msg{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 38px;
+  font-weight: 700;
+}
+
+div.faq__common_questions{
+  max-width: 768px;
+  margin: 38px auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+div.faq__common_questions__item:nth-child(n){
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px auto;
+  margin-bottom: 24px;
+}
+
+div.faq__common_questions__item:nth-child(n):hover{
+  cursor: pointer;
+}
+
+p.faq__common_questions__item__heading{
+  font-size: 22px;
+  display: inline-block;
+  width:max-content;
+}
+
+span.faq__common_questions__item__highlight:nth-child(n){
+  font-size: 22px;
+  color: rgb(129, 240, 175);
+  margin-right: 16px;
+}
+
+div.faq__common_questions__item__underline{
+    width: 100%;
+    height: 1px;
+    background-color: rgb(129, 240, 175);
+    margin-top: 8px;
+}
+
+/* 之所以這樣寫是因為 selector 權限較高，可以把原本的 margin reset 掉 */
+div.faq__common_questions__item:nth-child(n) p.faq__answer--hide{
+  visibility: hidden;
+  height: 0;
+  margin-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+p.faq__common_questions_item_answer{
+  margin-left: 48px;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+div.footer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 40px auto 0 auto;
+  background-color: #e8efee;
+  width: 100%;
+}
+
+div.footer__relative_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: space-between;
+  padding: 18px;
+  box-sizing: border-box;
+
+}
+
+div.footer__relative_info__shop_info{
+  display: flex;
+  flex-direction: column;
+}
+
+p.footer__relative_info__social_links__logo{
+  color: rgb(70, 181, 70);
+  font-size: 36px;
+}
+
+a.footer__relative_info__social_links__facebook{
+  text-decoration: none;
+  color: black;
+}
+
+a.footer__relative_info__social_links__instagram{
+  text-decoration: none;
+  color: black;
+}
+
+a.footer__relative_info__social_links__youtube{
+  text-decoration: none;
+  color: black;
+}
+
+div.footer__bottom{
+  width: 100%;
+  background-color: #35564b;
+  color: white;
+  text-align: center;
+}
+
+@media(max-width: 768px){
+  div.header__wrap{
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+  
+  nav.header__wrap__nav{
+    display: flex;
+    width: 100%;
+  }
+
+  nav.header__wrap__nav a{
+    flex: auto;   
+    margin-left: 0; 
+    border-radius: 0;
+    text-align: center;
+  }
+
+  div.faq__common_questions{
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  div.footer{
+    flex-direction: column;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+
+  div.footer__relative_info{
+    flex-direction: column;
+  }
+
+  div.footer__relative_info__shop_info{
+    align-items: center;
+  }
+
+  div.footer__relative_info__social_links{
+    order: -1;
+    margin-bottom: 10px;
+  }
+}
