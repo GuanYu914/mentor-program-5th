@@ -1,0 +1,190 @@
+/* 
+  待修正 bug
+  當輸入過多符號或數字時，代辦事項的名稱會因為長度太長超出清單寬度，文字的話則不會，推測可能跟 input type 有關係，
+
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+body{
+  font-family: 'Noto Sans TC', 'Roboto', sans-serif ;
+  background-color: #e5e5e5;
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
+
+.todoList{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 100px;
+  padding: 0 0 75px;
+  border-radius: 2px;
+  box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.25);
+  background-color: #f0ca59;
+}
+
+.todoList__header{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 99px;
+  box-shadow: 0 4px 2px 0 rgba(0, 0, 0, 0.12);
+  background-color: #ffd65b;
+}
+
+.todoList__heading{
+  font-family: 'Noto Sans TC';
+  font-size: 36px;
+  font-weight: 700;
+  text-align: center;
+  color: #3f3f3f;
+}
+
+.todoList__content{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 32px;
+  padding-right: 32px;
+  margin-top: 41px;
+  box-sizing: border-box;
+}
+
+.todoList__content__item_default{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 36px;
+  
+}
+
+.todoList__content input[name='item_default_text']{
+  font-family: 'Noto Sans TC';
+  font-size: 28px;
+  font-weight: 500;
+  color: #888888;
+  height: 30px;
+  padding-bottom: 10px;
+  border: 1px;
+  /* 只顯示底部 border */
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 4px solid #3f3f3f;
+  background-color: #f0ca59;
+}
+
+.todoList__content__item_default input[name=item_default_text]:focus{
+  /* 取消輸入文字時的外框 */
+  outline-width: 0px;
+  /* 改變輸入時的文字顏色 */
+  color: #3f3f3f;
+}
+
+/* 新增 Todo list 的樣式 */
+.todoList__content__item_new{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 37px;
+}
+
+/* 新增 Todo list 底線上半部 */
+.todoList__content__item_new__above_underline{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+/* 底線上半部裡面的 checkbox */
+.todoList__content__item_new__checkbox_container{
+  display: flex;
+  align-items: center;
+  /* 滑鼠靠近時會變成手掌圖示 */
+  cursor: pointer;
+}
+
+/* 隱藏預設 checkbox 元素屬性 */
+.todoList__content__item_new input[name=item_new_checkbox]{
+  opacity: 0;
+  cursor: pointer;
+  width: 0px;
+  height: 0px;
+}
+
+/* 客製化 checkbox */
+.todoList__content__item_new__checkbox_container__checkmark{
+  width: 20px;
+  height: 20px;
+  /* 當空間不足時，不會壓縮此元素 */
+  flex-shrink: 0;
+  box-sizing: border-box;
+  border: 2px solid #9b7233;
+  background-color: #f0ca59;
+}
+
+/* 點擊 Todo list 把 checkmark 改變顏色 */
+.todoList__content__item_new__checkbox_container > input[name=item_new_checkbox]:checked ~ .todoList__content__item_new__checkbox_container__checkmark{
+  background-color: #9b7233;
+}
+
+.todoList__content__item_new__checkbox_container__task_name{
+  font-family: 'Noto Sans TC';
+  font-weight: 500;
+  font-size: 28px;
+  margin-left: 10px;
+  color: #9b7233;
+}
+
+/* 當點擊 Todo list 把任務事項加上刪除線 */
+.todoList__content__item_new__checkbox_container > input[name=item_new_checkbox]:checked ~ .todoList__content__item_new__checkbox_container__task_name{
+  text-decoration: line-through;  
+}
+
+.todoList__content__item_new__delete{
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  /* 引入自己畫的 delete 圖示 */
+  background: url(./icon_delete.png) no-repeat center;
+  border: none;
+  cursor: pointer;
+}
+
+.todoList__content__item_new__underline{
+  width: 100%;
+  height: 4px;
+  margin-top: 8px;
+  background-color: #3f3f3f;
+}
+
+/* 寬度大於等於 520px 時 */
+@media screen and (min-width: 520px) { 
+  /* 設置 div.todoList 固定寬度為 520px  */
+  .todoList{
+    width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+  }
+}
+
+/* 寬度小於 520px 時 */
+@media screen and (max-width: 520px) {
+  .todoList__heading{
+    font-size: 28px;
+  }
+
+  .todoList__content input[name='item_default_text']{
+    font-size: 22px;
+  }
+
+  .todoList__content__item_new__checkbox_container__task_name{
+    font-size: 22px;
+  }
+}
