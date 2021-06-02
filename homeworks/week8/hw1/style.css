@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+
+body{
+  font-family: 'Noto Sans TC', 'Roboto';
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.header{
+  width: 100%;;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  background-color: white;
+  box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.2);
+}
+
+.header__wrap{
+  margin: auto;
+  max-width: 1400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 0;
+}
+
+.header__wrap__logo{
+  text-decoration: none;
+  font-size: 36px;
+  color: rgb(70, 181, 70);
+  font-weight: 900;
+}
+
+.header__wrap__nav{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 18px;
+}
+
+.header__wrap__nav a{
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-left: 16px;
+  border-radius: 8px;
+  padding: 12px 24px;
+  transition: background 0.1s;
+}
+
+.header__wrap__nav a:hover{
+  color: white;
+  background-color: #ff7286;
+}
+
+.header__wrap__nav a:nth-child(1){
+  color: white;
+  background-color: #ff7286;
+}
+
+.lottery{
+  margin-top: 92px;
+  width: 100%;
+  /*  
+    讓抽獎前後畫面等高，所以限制高度並加上很高的 padding 數值，使其觸發
+    最大高度限制，
+  */
+  padding-top: 260px;
+  padding-bottom: 260px;
+  max-height: 635px;
+  box-sizing: border-box;
+  /*  
+    讓抽獎前後畫面等高，所以限制高度並加上很高的 padding 數值，使其觸發
+    最大高度限制，
+  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url(./bg.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.lottery__intro{
+  width: 480px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-radius: 18px;
+  box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.lottery__intro__heading{
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(45, 192, 192);
+  margin-top: 38px;
+}
+
+.lottery__intro__info:nth-child(n){
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 18px;
+  margin-left: 18px;
+  margin-right: 18px;
+}
+
+.lottery__intro__info__detail:nth-child(n){
+  display: flex;
+}
+
+.lottery__intro__info__detail__highlight:nth-child(n){
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 700;
+  /* 垂直對齊 inline 元素 */
+  vertical-align: middle;
+}
+
+.lottery__intro__info__detail__content:nth-child(n){
+  font-size: 16px;
+  font-weight: 400;
+  /* 垂直對齊 inline 元素 */
+  vertical-align: middle;
+}
+
+.lottery__intro__info__underline:nth-child(n){
+  margin-top: 18px;
+  width: 100%;
+  height: 0.8px;
+  background-color: rgb(148, 148, 148);
+}
+
+div.lottery__intro .lottery__intro__button{
+  margin-top: 28px;
+  color: white;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-bottom: 22px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(226, 32, 68);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.lottery__prize{
+  width: 680px;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 18px;
+}
+
+.lottery__prize_msg{
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* 返回抽獎頁面的按鈕 */
+div.lottery__prize .lottery__prize__button{
+  margin-top: 28px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgb(226, 32, 68);
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.footer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 auto 0 auto;
+  background-color: #e8efee;
+  width: 100%;
+}
+
+.footer__relative_info{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  justify-content: space-between;
+  padding: 18px;
+  box-sizing: border-box;
+
+}
+
+.footer__relative_info__shop_info{
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__relative_info__social_links__logo{
+  color: rgb(70, 181, 70);
+  font-size: 36px;
+}
+
+.footer__relative_info__social_links__facebook{
+  text-decoration: none;
+  color: black;
+}
+
+.footer__relative_info__social_links__instagram{
+  text-decoration: none;
+  color: black;
+}
+
+.footer__relative_info__social_links__youtube{
+  text-decoration: none;
+  color: black;
+}
+
+.footer__bottom{
+  width: 100%;
+  background-color: #35564b;
+  color: white;
+  text-align: center;
+}
+
+@media(max-width: 768px){
+  .header__wrap{
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0;
+  }
+  
+  .header__wrap__nav{
+    display: flex;
+    width: 100%;
+  }
+
+  nav.header__wrap__nav a{
+    flex: auto;   
+    margin-left: 0; 
+    border-radius: 0;
+    text-align: center;
+  }
+  
+  .lottery{
+    margin-top: 100px;
+  }
+
+  .lottery__intro{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  .footer{
+    flex-direction: column;
+  }
+
+  .footer__relative_info{
+    flex-direction: column;
+  }
+
+  .footer__relative_info__shop_info{
+    align-items: center;
+  }
+
+  .footer__relative_info__social_links{
+    order: -1;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 400px) {
+  .lottery{
+    margin-top: 140px;
+  }
+}
