@@ -1,0 +1,194 @@
+
+/* 載入 Noto Sans TC Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.nav {
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: auto;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav__logo {
+  font-size: 32px;
+  font-weight: 700;
+  flex-grow: 0;
+  color: #121212;
+  text-decoration: none;
+  margin-right: 40px;
+}
+
+.nav__menu {
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+
+/* 螢幕寬度若小於等於 1200px */
+@media screen and (max-width: 1200px) {
+  .nav {
+    flex-direction: column;
+  }
+}
+
+.nav__menu__selection {
+  border: none;
+  background-color: white;
+  color: #121212;
+  font-size: 20px;
+  font-weight: 500;
+  padding: 20px 24px;
+  transition: all 0.4s;
+}
+
+.nav__menu__selection:hover {
+  background-color: #121212;
+  color: #fff;
+}
+
+/* 如果權重一樣，後面的會比前面優先，藉此可以套用此效果 */
+.nav__menu__selection--clicked {
+  background-color: #121212;
+  color: #fff;
+}
+
+.stream_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #121212;
+  /* 寬度依照內容增加刪減 */
+  min-height:fit-content;
+  /* 圖層下移 */
+  z-index: -1;
+}
+
+.stream_list__name {
+  max-width: 1400px;
+  margin: auto;
+  padding-top: 24px;
+  font-weight: 700;
+  font-size: 44px;
+  text-align: center;
+  color: white;
+}
+
+.stream_list__caption {
+  max-width: 1400px;
+  margin: auto;
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+}
+
+.stream_list__content {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  max-width: 1400px;
+  padding-top: 50px;
+  padding-left: 50px;
+  padding-right: 50px;
+  box-sizing: border-box;
+  margin: auto;
+  width: 100%;
+}
+
+.stream_list__content__item {
+  width: 400px;
+  margin-bottom: 20px;
+  transition: all 0.3s;
+}
+
+.stream_list__content__item:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 10px 10px rgba(255, 255, 255, 0.96);
+  cursor: pointer;
+}
+
+.stream_list__content__item__frame {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 300px;
+}
+
+.stream_list__content__item__info {
+  width: 400px;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;  
+  box-sizing: border-box;
+  background-color: #ccc;
+}
+
+.stream_list__content__item__info__avatar {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.stream_list__content__item__info__detail {
+  display: flex;
+  flex-direction: column;
+  /* 需要加上這些屬性才有辦法顯示加上 ... 效果，尚未知道原因 */
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.stream_list__content__item__info__detail__title {
+  color: #121212;
+  font-size: 24px;
+  font-weight: 600;
+  /* 如果想要加上 ... 效果，其父元素也需要加上相對應屬性 */
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.stream_list__content__item__info__detail__author {
+  color: #121212;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.stream_list__load_more {
+  width: fit-content;
+  height: fit-content;
+  background-color: #fff;
+  border: none;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 24px 36px;
+  cursor: pointer;
+  color: #121212;
+  font-weight: 500;
+  font-size: 24px;
+  transition: all 0.3s;
+}
+
+.stream_list__load_more:hover {
+  transform: scale(1.1);
+  box-shadow: 0px 0px 6px 6px rgba(255, 255, 255, 0.4);
+
+}
