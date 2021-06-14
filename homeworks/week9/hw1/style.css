@@ -1,0 +1,149 @@
+* {
+  margin: 0px;
+}
+
+body {
+  box-sizing: border-box;   /* 預設採用 border-box */
+  background-color: rgb(236, 236, 236);
+  color: #242424;
+}
+
+header {
+  background-color: rgb(235, 148, 148);
+}
+
+header h3 {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.warning {
+  color: rgb(142, 0, 0);
+}
+
+.error_msg {
+  text-align: center;
+}
+/* ~ 選取左邊元素的右邊 */
+.board__info ~ .warning {
+  margin-top: 20px;
+} 
+
+.warning ~ .board__form {
+  margin-top: 4px;
+}
+
+.board {
+  width: 800px;
+  margin: 12px auto ;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 2px 1px rgba(105, 105, 105, 0.1);
+  border-radius: 4px;
+}
+
+.board__info {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.board__info a {
+  text-decoration: none;
+  color: rgb(69, 200, 218);
+  font-size: 22px;
+  padding: 8px 32px;
+  font-weight: bold;
+  border: 2px solid rgb(69, 200, 218);
+  border-radius: 8px;
+}
+
+.board__info a:first-child {
+  margin-right: 14px;
+}
+
+.board__form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.board__form textarea {
+  width: 100%;
+  padding: 8px;
+  resize: none; /* 讓 textarea 不能縮放 */
+  box-sizing: border-box;
+  font-size: 18px;
+  border: 2px solid rgb(69, 200, 218);
+}
+
+.board__form textarea:focus {
+  outline: none; /* 取消點選外框提示效果 */
+}
+
+.board__form > input[type="submit"] {
+  padding: 8px 32px;
+  background-color: #fff;
+  background-color: rgb(69, 200, 218);
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.board__form input[type="text"], input[type="password"] {
+  border: 2px solid rgb(69, 200, 218);
+  padding: 6px;
+  margin-bottom: 12px;
+  outline: none;
+  border-radius: 4px;
+}
+
+.board__hr {
+  background-color: #acacac;
+  width: 100%;
+  height: 0.4px;
+  border-radius: 8px;
+}
+
+.comments {
+  margin-top: 20px;
+  display: flex;
+}
+
+.comments__avatar {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  background-color: rgb(173, 229, 237);
+  border-radius: 50%;
+  margin-right: 14px;
+}
+
+.comments__info__author h4{
+  display: inline-block;
+  word-break: break-all; /* 字多換行 */
+}
+
+.comments__info__author h4:first-child{
+  margin-right: 8px;
+  font-size: 20px;
+  color: rgb(69, 200, 218);
+}
+
+.comments__info__author h4:nth-child(2){
+  font-weight: normal;
+  font-size: 16px;
+  color: rgb(157, 157, 157);
+}
+
+.comments__info__content {
+  margin-top: 4px;
+  word-break: break-all;
+  white-space: pre-line; /* 依據輸入換行 */
+}
