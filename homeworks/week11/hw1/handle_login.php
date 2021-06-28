@@ -16,10 +16,7 @@ if (
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-if (
-  empty($username) ||
-  empty($password)
-) {
+if (empty($username) || empty($password)) {
   $_SESSION['Msg'] = $EMPTY_INPUT_DATA;
   $_SESSION['MsgDetail'] = "偵測到空欄位";
   header("Location: login.php");

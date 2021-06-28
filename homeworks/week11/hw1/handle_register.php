@@ -31,7 +31,7 @@ if (
 $password = password_hash($password, PASSWORD_DEFAULT);
 
 // 新增 SQL 語法
-if ($stmt = $conn->prepare("INSERT INTO users(nickname, username, password) VALUE(?, ?, ?)")) {
+if ($stmt = $conn->prepare("INSERT INTO users(role, nickname, username, password) VALUE('一般用戶', ?, ?, ?)")) {
   $stmt->bind_param('sss', $nickname, $username, $password);
   $res = $stmt->execute();
 }

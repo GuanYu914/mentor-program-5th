@@ -4,6 +4,7 @@
 <?php
 require_once("conn.php");
 require_once("macro.php");
+require_once("utils.php");
 
 // 檢查 SESSION 有無被設定
 if (
@@ -16,10 +17,11 @@ if (
 
 if (empty($_GET['id'])) {
   $_SESSION['Msg'] = $INVALID_OPERATION;
-  header("Location: index.php");
+  header("Location: index.php?page=1");
   die();
 }
 $id = $_GET['id'];
+$username = $_SESSION['username'];
 
 // 拿到該留言的用戶
 if ($stmt = $conn->prepare("SELECT username FROM comments WHERE id=?")) {
@@ -36,7 +38,7 @@ $res = $stmt->get_result();
 $comment_username = $res->fetch_assoc()['username'];
 
 // 為非本人刪除，發送 error 錯誤訊息
-if ($comment_username !== $_SESSION['username']) {
+if (!get_permission_delete($username, $comment_username)) {
   $_SESSION['Msg'] = $INVALID_OPERATION;
   header("Location: index.php?page=1");
 } else {
