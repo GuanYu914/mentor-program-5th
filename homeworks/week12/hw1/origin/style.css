@@ -1,0 +1,414 @@
+* {
+  margin: 0px;
+}
+
+body {
+  box-sizing: border-box;
+  /* 預設採用 border-box */
+  background-color: rgb(236, 236, 236);
+  color: #242424;
+}
+
+header {
+  width: 100%;
+  background-color: rgb(235, 148, 148);
+}
+
+header h3 {
+  text-align: center;
+  padding: 12px 0;
+}
+
+.warning {
+  color: rgb(142, 0, 0);
+}
+
+.error_msg {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ~ 選取左邊元素的右邊 */
+
+.board__info~.warning {
+  margin-top: 20px;
+}
+
+.warning~.board__form {
+  margin-top: 4px;
+}
+
+.board {
+  width: 100%;
+  max-width: 800px;
+  margin: 12px auto;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 2px 2px 2px 1px rgba(105, 105, 105, 0.1);
+  border-radius: 4px;
+}
+
+.board__info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.board__info>h2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.board__info__button {
+  text-decoration: none;
+  color: rgb(69, 200, 218);
+  font-size: 22px;
+  padding: 8px 28px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 2px solid rgb(69, 200, 218);
+  border-radius: 8px;
+}
+
+button.board__info__button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+button.board__info__button~a.board__info__button {
+  margin-left: 10px;
+}
+
+a.board__info__button~a.board__info__button {
+  margin-left: 10px;
+}
+
+#nickname__form>input[name="nickname"] {
+  margin-bottom: 0px;
+  padding: 10px;
+}
+
+#nickname__form {
+  display: flex;
+  align-items: center;
+}
+
+#nickname__form>input[type="submit"] {
+  margin-left: 10px;
+}
+
+.board__form {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.board__form textarea {
+  width: 100%;
+  padding: 8px;
+  resize: none;
+  /* 讓 textarea 不能縮放 */
+  box-sizing: border-box;
+  font-size: 18px;
+  border: 2px solid rgb(69, 200, 218);
+}
+
+.board__form textarea:focus {
+  outline: none;
+  /* 取消點選外框提示效果 */
+}
+
+.board__form>input[type="submit"] {
+  padding: 8px 32px;
+  background-color: #fff;
+  background-color: rgb(69, 200, 218);
+  border-radius: 8px;
+  border: none;
+  color: white;
+  font-size: 22px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.board__form input[type="text"], input[type="password"] {
+  border: 2px solid rgb(69, 200, 218);
+  padding: 8px;
+  margin-bottom: 12px;
+  outline: none;
+  border-radius: 4px;
+}
+
+.board__hr {
+  background-color: #acacac;
+  width: 100%;
+  height: 0.4px;
+  border-radius: 8px;
+}
+
+.comments {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.comments__avatar {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  background-color: rgb(173, 229, 237);
+  border-radius: 50%;
+  margin-right: 14px;
+}
+
+.comments__info__author h4 {
+  display: inline-block;
+  word-break: break-all;
+  /* 字多換行 */
+}
+
+.comments__info__author h4:first-child {
+  margin-right: 8px;
+  font-size: 20px;
+  color: rgb(69, 200, 218);
+}
+
+.comments__info__author h4:nth-child(2) {
+  font-weight: normal;
+  font-size: 16px;
+  color: rgb(157, 157, 157);
+}
+
+.comments__info__content {
+  margin-top: 4px;
+  word-break: break-all;
+  white-space: pre-line;
+  /* 依據輸入換行 */
+}
+
+.comments__info__operation a:first-child~a {
+  margin-left: 8px;
+}
+
+.comments__info__operation {
+  margin-bottom: 12px;
+}
+
+a.comments__operation {
+  text-decoration: none;
+  color: rgb(69, 200, 218);
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.edit_page_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.edit_page_header h1 {
+  display: inline-block;
+}
+
+.edit_page_header a {
+  text-decoration: none;
+  color: rgb(69, 200, 218);
+  font-size: 22px;
+  padding: 6px 28px;
+  font-weight: bold;
+  background-color: #fff;
+  border: 2px solid rgb(69, 200, 218);
+  border-radius: 8px;
+}
+
+.board__paginator {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.board__paginator a {
+  margin-left: 12px;
+  text-decoration: none;
+  color: rgb(69, 200, 218);
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.board__paginator h3 {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+/* admin.php css */
+
+.board__users {
+  margin-top: 20px;
+}
+
+.board__users__detail {
+  margin-top: 20px;
+}
+
+.board__users__detail label[for="username"], label[for="nickname"], label[for="role"] {
+  font-size: 20px;
+  color: rgb(69, 200, 218);
+  font-weight: bold;
+}
+
+.board__users__username>p {
+  font-size: 18px;
+  display: inline-block;
+}
+
+.board__users__nickname>input[type="text"] {
+  font-size: 18px;
+  display: inline-block;
+  padding: 4px;
+}
+
+.board__users__detail>input[type="submit"] {
+  display: block;
+  margin-top: 8px;
+  padding: 4px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 2px solid rgb(69, 200, 218);
+  color: rgb(69, 200, 218);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.board__users__detail>input[type="submit"]:hover {
+  background-color: rgb(69, 200, 218);
+  color: #fff;
+}
+
+.board__users__detail~.board__users__detail {
+  margin-top: 24px;
+}
+
+.board__users__role>select {
+  font-size: 16px;
+  padding: 4px;
+}
+
+.board__users__detail>div~div {
+  margin-top: 10px;
+}
+
+/* permission.php css */
+
+.board__permission {
+  margin-top: 20px;
+}
+
+.board__permission__add {
+  margin-top: 20px;
+}
+
+.board__permission__add h2 {
+  margin-bottom: 12px;
+}
+
+.board__permission__add label[for="role_name"], 
+.board__permission__add label[for="role_add"], 
+.board__permission__add label[for="role_edit"], 
+.board__permission__add label[for="role_delete"] {
+  font-size: 20px;
+  color: rgb(69, 200, 218);
+  font-weight: bold;
+}
+
+div.role_name input, 
+div.role_add select, 
+div.role_edit select, 
+div.role_delete select {
+  font-size: 16px;
+  padding: 4px;
+  font-weight: normal;
+}
+
+.add_form>div~div {
+  margin-top: 10px;
+}
+
+.add_form>input[type="submit"], 
+.role_modified>input[type="submit"] {
+  margin-top: 8px;
+  padding: 4px 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  border: 2px solid rgb(69, 200, 218);
+  color: rgb(69, 200, 218);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.add_form>input[type="submit"]:hover, 
+.role_modified>input[type="submit"]:hover {
+  background-color: rgb(69, 200, 218);
+  color: #fff;
+}
+
+.role_modified>input[type="submit"]~input[type="submit"] {
+  margin-left: 10px;
+}
+
+.board__permission__roles, 
+.role_not_modified, 
+.role_modified {
+  margin-top: 20px;
+}
+
+.role_not_modified h3, .role_modified h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.role_not_modified label[for="role_name"], 
+.role_not_modified label[for="role_add"], 
+.role_not_modified label[for="role_edit"], 
+.role_not_modified label[for="role_delete"], 
+.role_modified label[for="role_name"], 
+.role_modified label[for="role_add"], 
+.role_modified label[for="role_edit"], 
+.role_modified label[for="role_delete"] {
+  font-size: 20px;
+  color: rgb(69, 200, 218);
+  font-weight: bold;
+}
+
+.role_not_modified>div.role_name>span, 
+.role_not_modified>div.role_add>span, 
+.role_not_modified>div.role_edit>span, 
+.role_not_modified>div.role_delete>span {
+  font-size: 18px;
+}
+
+.role_modified>div.role_name>input, 
+.role_modified>div.role_add>select, 
+.role_modified>div.role_edit>select, 
+.role_modified>div.role_delete>select {
+  font-size: 16px;
+  padding: 4px;
+}
+
+.role_not_modified div~div, 
+.role_modified div~div {
+  margin-top: 10px;
+}
