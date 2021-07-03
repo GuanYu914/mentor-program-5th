@@ -70,11 +70,9 @@ htmlspecialchars($str, ENT_QUOTES);
 https://blog.techbridge.cc/2017/02/25/csrf-introduction/
 - 防止跨領域 domain 存取
   - **檢查 Referer**
-  request 的 header 裡面會帶一個欄位叫做 Referer，**代表這個 request 是從哪個地方過來的，可以檢查這個欄位看是不是合法的 domain，不是的話直接 reject 掉即可**
-  <br>
+  request 的 header 裡面會帶一個欄位叫做 Referer，**代表這個 request 是從哪個地方過來的，可以檢查這個欄位看是不是合法的 domain，不是的話直接 reject 掉即可**<br><br>
   - **加上圖形驗證碼、簡訊驗證碼**
-  就跟網路銀行轉帳的時候一樣，都會要你收簡訊驗證碼，多了這一道檢查就可以確保不會被 CSRF 攻擊
-  <br>
+  就跟網路銀行轉帳的時候一樣，都會要你收簡訊驗證碼，多了這一道檢查就可以確保不會被 CSRF 攻擊<br><br>
   - **加上 CSRF token**
   要防止 CSRF 攻擊，我們其實**只要確保有些資訊「只有使用者知道」即可。那該怎麼做呢？**
   我們在 form 裡面加上一個 hidden 的欄位，叫做 csrftoken，這裡面填的值由 Server 隨機產生，並且存在 Server 的 SESSION 中
@@ -85,8 +83,7 @@ https://blog.techbridge.cc/2017/02/25/csrf-introduction/
       <input type="submit" value="刪除文章"/>
     </form>
     ```
-    **Server 比對表單中的 csrf token 與自己 session 裡面存的是不是一樣的，是的話就代表這的確是由使用者本人發出的 request。這個 csrf token 由 Server 產生，並且每一段不同的 session 就應該要更換一次**
-  <br>
+    **Server 比對表單中的 csrf token 與自己 session 裡面存的是不是一樣的，是的話就代表這的確是由使用者本人發出的 request。這個 csrf token 由 Server 產生，並且每一段不同的 session 就應該要更換一次**<br><br>
   - **client side 的 Double Submit Cookie**
   這個解法的前半段與剛剛的相似，由 server 產生一組隨機的 token 並且加在 form 上面。但不同的點在於，除了**不用把這個值寫在 session 以外，同時也讓 client side 設定一個名叫 csrftoken 的 cookie，值也是同一組 token。**
     ```html
@@ -98,9 +95,8 @@ https://blog.techbridge.cc/2017/02/25/csrf-introduction/
       <input type="submit" value="刪除文章"/>
     </form>
     ```
-    <br>當使用者按下 submit 的時候，server 比對 cookie 內的 csrftoken 與 form 裡面的 csrftoken，檢查是否有值並且相等，就知道是不是使用者發的了
-    為什麼呢？假設現在攻擊者想要攻擊，他可以隨便在 form 裡面寫一個 csrf token，這當然沒問題，可是**因為瀏覽器的限制，他並不能在他的 domain 設定 small-min.blog.com 的 cookie 啊！所以他發上來的 request 的 cookie 裡面就沒有 csrftoken，就會被擋下來**
-    <br>
+    當使用者按下 submit 的時候，server 比對 cookie 內的 csrftoken 與 form 裡面的 csrftoken，檢查是否有值並且相等，就知道是不是使用者發的了
+    為什麼呢？假設現在攻擊者想要攻擊，他可以隨便在 form 裡面寫一個 csrf token，這當然沒問題，可是**因為瀏覽器的限制，他並不能在他的 domain 設定 small-min.blog.com 的 cookie 啊！所以他發上來的 request 的 cookie 裡面就沒有 csrftoken，就會被擋下來**<br><br>
 - 瀏覽器本身的預防機制
   - **SameSite cookie**
   SameSite 有兩種模式，Lax跟Strict，默認是後者，你也可以自己指定模式
@@ -108,8 +104,8 @@ https://blog.techbridge.cc/2017/02/25/csrf-introduction/
     Set-Cookie: session_id=ewfewjf23o1; SameSite=Strict
     Set-Cookie: foo=bar; SameSite=Lax
     ```
-    <br>我們先來談談默認的 Strict模式，當你加上 SameSite 這個關鍵字之後，我們上面所講的```<a href=""/>```、```<form>```、```new XMLHttpRequest```，**只要是瀏覽器驗證不是在同一個 site 底下發出的 request，全部都不會帶上這個 cookie。**<br>
-    可是這樣其實會有個問題，連```<a href="..."/>```都不會帶上 cookie 的話，當我從 Google 搜尋結果或者是朋友貼給我的連結點進某個網站的時候，因為不會帶 cookie 的關係，所以那個網站就會變成是登出狀態。**這樣子的使用者體驗非常不好。**<br>
-    Lax 模式放寬了一些限制，例如說```<a>```、```<link rel="prerender">```、```<form method="GET">``` 這些都還是會帶上 cookie。但是 POST 方法 的 form，或是**只要是 POST, PUT, DELETE 這些方法，就不會帶上 cookie**<br>
+    我們先來談談默認的 Strict模式，當你加上 SameSite 這個關鍵字之後，我們上面所講的```<a href=""/>```、```<form>```、```new XMLHttpRequest```，**只要是瀏覽器驗證不是在同一個 site 底下發出的 request，全部都不會帶上這個 cookie。**<br><br>
+    可是這樣其實會有個問題，連```<a href="..."/>```都不會帶上 cookie 的話，當我從 Google 搜尋結果或者是朋友貼給我的連結點進某個網站的時候，因為不會帶 cookie 的關係，所以那個網站就會變成是登出狀態。**這樣子的使用者體驗非常不好。**<br><br>
+    Lax 模式放寬了一些限制，例如說```<a>```、```<link rel="prerender">```、```<form method="GET">``` 這些都還是會帶上 cookie。但是 POST 方法 的 form，或是**只要是 POST, PUT, DELETE 這些方法，就不會帶上 cookie**<br><br>
     讓使用者從其他網站連進你的網站時還能夠維持登入狀態，一方面也可以防止掉 CSRF 攻擊。**但 Lax 模式之下就沒辦法擋掉 GET 形式的 CSRF，這點要特別注意一下。**
   
