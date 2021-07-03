@@ -25,6 +25,10 @@
   編輯身分權限
   刪除身分權限 ( Soft Delete)
 
+#### API 實作
+- 新增留言 (目前只能透過指定用戶新增留言)
+- 瀏覽所有留言
+
 #### 資安實作
 - XSS Attacks
 - SQL Injection
@@ -153,6 +157,10 @@
 刪除按鈕 > handle_updated_permission.php
 - 編輯用戶資訊按鈕 > admin.php
 - 回首頁 > index.php
+  
+#### API 留言板 api_demo.html
+- 編輯留言區塊
+- 送出按鈕 > api_add_comment.php
 
 ## 後端檔案
 #### 負責資料庫連接 conn.php
@@ -185,6 +193,12 @@
 寫入新的權限到 permission table
 更新既有權限，並同步更新 users 內所有既有權限用戶
 刪除既有身份權限
+
+#### 回傳留言資訊 api_comments.php
+回傳 JSON 形式的留言內容
+
+#### 回傳所有留言 JSON 格式資訊 api_add_comment.php
+根據 POST 新增留言資訊
 
 ## 其餘檔案
 #### style.css
