@@ -1,0 +1,252 @@
+<!-- 基於 bootstrap & jQuery 實作 -->
+<!-- 尚未實作 後端儲存 todos list -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <!-- import jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <!-- import bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <style>
+    .complete {
+      text-decoration: line-through;
+    }
+
+    .pointer {
+      cursor: pointer;
+    }
+  </style>
+  <script>
+    $(document).ready(() => {
+      console.log('document loaded completely')
+
+      // add todo list (interaction with keyboard at list-group-all tap)
+      $('#input-todo-content').on('keyup', (e) => {
+        if (e.key === 'Enter' || e.keyCode === 13) {
+          if ($('#input-todo-content').val() !== '') {
+            // add input content to lists
+            $('.list-group-all').prepend(
+              `
+            <div class="d-flex align-items-center list-group-item todo">
+              <input class="flex-shrink-0 form-check-input pointer me-3 " type="checkbox" >
+              <p contenteditable='true' class="flex-grow-1 text-break list-group-item-p me-4 mb-0">${escapeHtml($('#input-todo-content').val())}</p>
+              <button type="button" class="flex-shrink-0 btn-close px-0 py-0" aria-label="Close"></button>
+            </div>
+            `
+            )
+            // clear input field content
+            $('#input-todo-content').val('')
+            // update unfinished todo counts
+            getUnfinishedTodos()
+          } else {
+            // show modal view
+            var modal = new bootstrap.Modal(document.getElementById('emptyTodoContent'), {
+              keyboard: false
+            })
+            modal.show()
+          }
+        }
+      })
+
+      // remove todo (by pressing close button at list-group-all tap)
+      $('.list-group-all').on('click', '.btn-close', (e) => {
+        $(e.target).parent().fadeOut('fast', () => {
+          $(e.target).parent().remove()
+          // update unfinished todo counts
+          getUnfinishedTodos()
+        })
+      })
+
+      // clear all finished todos
+      $('.btn-clear-todo').click((e) => {
+        console.log('1111')
+        var todos = $('.list-group-all').find('.list-group-item').toArray()
+        for (let i = 0; i < todos.length; i++) {
+          if ($(todos[i]).hasClass('done')) {
+            $(todos[i]).fadeOut('fast', () => {
+              $(todos[i]).remove()
+              getUnfinishedTodos()
+            })
+          }
+        }
+      })
+
+      // complete todo (by pressing checkbox at list-group-all top)
+      $(".list-group-all").on('click', '.form-check-input', (e) => {
+        $(e.target).next().toggleClass('complete')
+        $(e.target).parent().toggleClass('todo')
+        $(e.target).parent().toggleClass('done')
+        // update unfinished todo counts
+        getUnfinishedTodos()
+      })
+
+      // switch to unfinished-tab
+      $('#unfinished-tab').click((e) => {
+        console.log('unfinished')
+        // clear all previous records
+        $('.list-group-unfinished').empty()
+        // fetch all unfinished-tab
+        var todos = $('.list-group-all').find('.list-group-item').toArray()
+        for (let i = 0; i < todos.length; i++) {
+          if ($(todos[i]).hasClass('todo')) {
+            $(todos[i]).clone().prependTo('.list-group-unfinished')
+          }
+        }
+        // delete all deletion button
+        var btns = $('.list-group-unfinished').find('button').toArray()
+        for (let i = 0; i < btns.length; i++) {
+          $(btns[i]).remove()
+        }
+        // delete all checkbox 
+        var checks = $('.list-group-unfinished').find('input').toArray()
+        for (let i = 0; i < checks.length; i++) {
+          $(checks[i]).remove()
+        }
+        // make all p editable
+        var ps = $('.list-group-unfinished').find('p').toArray()
+        for (let i = 0; i < ps.length; i++) {
+          $(ps[i]).removeAttr('contenteditable')
+        }
+      })
+
+      // switch to finished-tab
+      $('#finished-tab').click((e) => {
+        // clear all previous records
+        $('.list-group-finished').empty()
+        // fetch all finished todos
+        var todos = $('.list-group-all').find('.list-group-item').toArray()
+        for (let i = 0; i < todos.length; i++) {
+          if ($(todos[i]).hasClass('done')) {
+            $(todos[i]).clone().prependTo('.list-group-finished')
+          }
+        }
+        // delete all deletion button
+        var btns = $('.list-group-finished').find('button').toArray()
+        for (let i = 0; i < btns.length; i++) {
+          $(btns[i]).remove()
+        }
+        // delete all checkbox 
+        var checks = $('.list-group-finished').find('input').toArray()
+        for (let i = 0; i < checks.length; i++) {
+          $(checks[i]).remove()
+        }
+        // make all p editable
+        var ps = $('.list-group-finished').find('p').toArray()
+        for (let i = 0; i < ps.length; i++) {
+          $(ps[i]).removeAttr('contenteditable')
+        }
+      })
+
+      // count number of todos needed to be finished
+      function getUnfinishedTodos() {
+        $('.todos-remaining').text(`剩餘 ${$('.todo').length} 個代辦事項`)
+      }
+
+      // html escape 
+      function escapeHtml(unsafe) {
+        return unsafe
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+    })
+  </script>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-12">
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Todo List</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- empty todo content modal -->
+    <div class="modal fade" id="emptyTodoContent" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">請輸入代辦事項內容</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            請輸入內容才能幫您紀錄喔
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">我知道了</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-8 mt-3 mx-auto">
+        <div class="d-flex justify-content-end align-items-center flex-wrap">
+          <span class="flex-grow-1 badge btn btn-secondary todos-remaining py-2 me-3">剩餘 0 個代辦事項</span>
+          <button type="button" class="flex-grow-1 btn btn-success btn-sm">儲存此代辦清單</button>
+        </div>
+
+        <!-- input -->
+        <div class="input-group mt-3 mb-3">
+          <input type="text" class="form-control" placeholder="請輸入代辦事項，並按下 Enter 送出" aria-label="add todo content"
+            aria-describedby="button-add-todo" id="input-todo-content">
+        </div>
+        <!-- content tab -->
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="totals" role="tabpanel" aria-labelledby="totals-tab">
+            <!-- display all todos -->
+            <div class="list-group-all"></div>
+          </div>
+          <div class="tab-pane fade" id="unfinished" role="tabpanel" aria-labelledby="unfinished-tab">
+            <!-- display unfinished todos -->
+            <div class="list-group-unfinished"></div>
+          </div>
+          <div class="tab-pane fade" id="finished" role="tabpanel" aria-labelledby="finished-tab">
+            <!-- display finished todos -->
+            <div class="list-group-finished"></div>
+          </div>
+        </div>
+        <!-- tab nav-pills -->
+        <div class="d-flex flex-wrap justify-content-center align-items-center mt-3">
+          <ul class="nav nav-pills d-flex flex-grow-1 justify-content-center mt-3" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="fs-6 nav-link active" id="totals-tab" data-bs-toggle="pill" data-bs-target="#totals"
+                type="button" role="tab" aria-controls="totals" aria-selected="true">全部</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="fs-6 nav-link" id="unfinished-tab" data-bs-toggle="pill" data-bs-target="#unfinished"
+                type="button" role="tab" aria-controls="unfinished" aria-selected="false">未完成</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="fs-6 nav-link" id="finished-tab" data-bs-toggle="pill" data-bs-target="#finished"
+                type="button" role="tab" aria-controls="finished" aria-selected="false">已完成</button>
+            </li>
+          </ul>
+          <button type="button"
+            class="flex-grow-1 fs-6 btn btn-success btn-sm btn-clear-todo ms-3 mt-3">清除所有已完成的事項</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
