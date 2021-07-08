@@ -1,0 +1,480 @@
+$color-bg: #ececec;
+$color-bg2: #ffffff;
+$color-bg3: #acacac;
+$color-bg4: #9d9d9d;
+$color-primary: #45c8da;
+$color-secondary: #ade5ed;
+$color-text: #242424;
+$color-board-shadow: rgba(105, 105, 105, 0.1);
+$color-header: #eb9494;
+$color-warning: #8e0000;
+
+* {
+  margin: 0px;
+}
+
+body {
+  /* 預設採用 border-box */
+  box-sizing: border-box;
+  background-color: $color-bg;
+  color: $color-text;
+}
+
+header {
+  width: 100%;
+  background-color: $color-header;
+
+  h3 {
+    text-align: center;
+    padding: 12px 0;
+  }
+}
+
+.warning {
+  color: $color-warning;
+
+  & ~ .board__form {
+    margin-top: 4px;
+  }
+}
+
+.error_msg {
+  text-align: center;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.board {
+  width: 100%;
+  max-width: 800px;
+  margin: 12px auto;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: $color-bg2;
+  box-shadow: 2px 2px 2px 1px $color-board-shadow;
+  border-radius: 4px;
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  &__info > h2 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  &__info ~ .warning {
+    margin-top: 20px;
+  }
+
+  &__info__button {
+    text-decoration: none;
+    color: $color-primary;
+    font-size: 22px;
+    padding: 8px 28px;
+    font-weight: bold;
+    background-color: $color-bg2;
+    border: 2px solid $color-primary;
+    border-radius: 8px;
+  }
+
+  &__form {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: bold;
+
+    textarea {
+      width: 100%;
+      padding: 8px;
+      resize: none;
+      /* 讓 textarea 不能縮放 */
+      box-sizing: border-box;
+      font-size: 18px;
+      border: 2px solid $color-primary;
+    }
+
+    textarea:focus {
+      /* 取消點選外框提示效果 */
+      outline: none;
+    }
+
+    & > input[type="submit"] {
+      padding: 8px 32px;
+      background-color: $color-bg2;
+      background-color: $color-primary;
+      border-radius: 8px;
+      border: none;
+      color: $color-bg2;
+      font-size: 22px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      border: 2px solid $color-primary;
+      padding: 8px;
+      margin-bottom: 12px;
+      outline: none;
+      border-radius: 4px;
+    }
+  }
+
+  &__hr {
+    background-color: $color-bg3;
+    width: 100%;
+    height: 0.4px;
+    border-radius: 8px;
+  }
+
+  &__users {
+    margin-top: 20px;
+
+    &__detail {
+      margin-top: 20px;
+    }
+
+    &__detail ~ .board__users__detail {
+      margin-top: 24px;
+    }
+
+    &__detail > div ~ div {
+      margin-top: 10px;
+    }
+
+    &__detail label[for="username"],
+    label[for="nickname"],
+    label[for="role"] {
+      font-size: 20px;
+      color: $color-primary;
+      font-weight: bold;
+    }
+
+    &__detail > input[type="submit"] {
+      display: block;
+      margin-top: 8px;
+      padding: 4px 20px;
+      background-color: $color-bg2;
+      border-radius: 8px;
+      border: 2px solid $color-primary;
+      color: $color-primary;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+    }
+
+    &__detail > input[type="submit"]:hover {
+      background-color: $color-primary;
+      color: $color-bg2;
+    }
+
+    &__username > p {
+      font-size: 18px;
+      display: inline-block;
+    }
+
+    &__nickname > input[type="text"] {
+      font-size: 18px;
+      display: inline-block;
+      padding: 4px;
+    }
+
+    &__role > select {
+      font-size: 16px;
+      padding: 4px;
+    }
+  }
+
+  &__permission {
+    margin-top: 20px;
+
+    &__add {
+      margin-top: 20px;
+    }
+
+    &__add h2 {
+      margin-bottom: 12px;
+    }
+
+    &__add {
+      label[for="role_name"],
+      label[for="role_add"],
+      label[for="role_edit"],
+      label[for="role_delete"] {
+        font-size: 20px;
+        color: $color-primary;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &__permission__roles {
+    margin-top: 20px;
+  }
+
+  &__paginator {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    h3 {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 8px;
+    }
+
+    a {
+      margin-left: 12px;
+      text-decoration: none;
+      color: $color-primary;
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+}
+
+button.board__info__button {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+
+  & ~ a.board__info__button {
+    margin-left: 10px;
+  }
+}
+
+a.board__info__button {
+  & ~ a.board__info__button {
+    margin-left: 10px;
+  }
+}
+
+#nickname__form {
+  display: flex;
+  align-items: center;
+
+  & > input[name="nickname"] {
+    margin-bottom: 0px;
+    padding: 10px;
+  }
+
+  & > input[type="submit"] {
+    margin-left: 10px;
+  }
+}
+
+.comments {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+
+  &__avatar {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    background-color: $color-secondary;
+    border-radius: 50%;
+    margin-right: 14px;
+  }
+
+  &__operation {
+    text-decoration: none;
+    color: $color-primary;
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  &__info__operation {
+    margin-bottom: 12px;
+
+    a:first-child ~ a {
+      margin-left: 8px;
+    }
+  }
+
+  &__info__author {
+    h4 {
+      display: inline-block;
+      // 字多換行
+      word-break: break-all;
+    }
+
+    h4:first-child {
+      margin-right: 8px;
+      font-size: 20px;
+      color: $color-primary;
+    }
+
+    h4:nth-child(2) {
+      font-weight: normal;
+      font-size: 16px;
+      color: $color-bg4;
+    }
+  }
+
+  &__info__content {
+    margin-top: 4px;
+    /* 依據輸入換行 */
+    word-break: break-all;
+    white-space: pre-line;
+  }
+}
+
+.edit_page_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    display: inline-block;
+  }
+
+  a {
+    text-decoration: none;
+    color: $color-primary;
+    font-size: 22px;
+    padding: 6px 28px;
+    font-weight: bold;
+    background-color: $color-bg2;
+    border: 2px solid $color-primary;
+    border-radius: 8px;
+  }
+}
+
+.role_add,
+.role_edit,
+.role_delete {
+  select {
+    font-size: 16px;
+    padding: 4px;
+    font-weight: normal;
+  }
+}
+
+.role_name {
+  input {
+    font-size: 16px;
+    padding: 4px;
+    font-weight: normal;
+  }
+}
+
+.add_form {
+  & > div ~ div {
+    margin-top: 10px;
+  }
+}
+
+.role_modified {
+  margin-top: 20px;
+
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  & > input[type="submit"] ~ input[type="submit"] {
+    margin-left: 10px;
+  }
+
+  label[for="role_name"],
+  label[for="role_add"],
+  label[for="role_edit"],
+  label[for="role_delete"] {
+    font-size: 20px;
+    color: $color-primary;
+    font-weight: bold;
+  }
+}
+
+.role_not_modified {
+  margin-top: 20px;
+
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  label[for="role_name"],
+  label[for="role_add"],
+  label[for="role_edit"],
+  label[for="role_delete"] {
+    font-size: 20px;
+    color: $color-primary;
+    font-weight: bold;
+  }
+
+  div ~ div {
+    margin-top: 10px;
+  }
+
+  & > div.role_name > span {
+    font-size: 18px;
+  }
+
+  & > div.role_add > span {
+    font-size: 18px;
+  }
+
+  & > div.role_edit > span {
+    font-size: 18px;
+  }
+
+  & > div.role_delete > span {
+    font-size: 18px;
+  }
+}
+
+.add_form,
+.role_modified {
+  & > input[type="submit"] {
+    margin-top: 8px;
+    padding: 4px 20px;
+    background-color: $color-bg2;
+    border-radius: 8px;
+    border: 2px solid $color-primary;
+    color: $color-primary;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+  }
+
+  & > input[type="submit"]:hover {
+    background-color: $color-primary;
+    color: $color-bg2;
+  }
+
+  div ~ div {
+    margin-top: 10px;
+  }
+
+  & > div.role_name > input {
+    font-size: 16px;
+    padding: 4px;
+  }
+
+  & > div.role_add > select {
+    font-size: 16px;
+    padding: 4px;
+  }
+
+  & > div.role_edit > select {
+    font-size: 16px;
+    padding: 4px;
+  }
+
+  & > div.role_delete > select {
+    font-size: 16px;
+    padding: 4px;
+  }
+}
