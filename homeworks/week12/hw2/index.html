@@ -68,7 +68,6 @@
 
       // clear all finished todos
       $('.btn-clear-todo').click((e) => {
-        console.log('1111')
         var todos = $('.list-group-all').find('.list-group-item').toArray()
         for (let i = 0; i < todos.length; i++) {
           if ($(todos[i]).hasClass('done')) {
@@ -91,7 +90,6 @@
 
       // switch to unfinished-tab
       $('#unfinished-tab').click((e) => {
-        console.log('unfinished')
         // clear all previous records
         $('.list-group-unfinished').empty()
         // fetch all unfinished-tab
@@ -101,17 +99,17 @@
             $(todos[i]).clone().prependTo('.list-group-unfinished')
           }
         }
-        // delete all deletion button
+        // remove deletion button on every todo
         var btns = $('.list-group-unfinished').find('button').toArray()
         for (let i = 0; i < btns.length; i++) {
           $(btns[i]).remove()
         }
-        // delete all checkbox 
+        // remove checkbox on every todo
         var checks = $('.list-group-unfinished').find('input').toArray()
         for (let i = 0; i < checks.length; i++) {
           $(checks[i]).remove()
         }
-        // make all p editable
+        // make all p non-editable
         var ps = $('.list-group-unfinished').find('p').toArray()
         for (let i = 0; i < ps.length; i++) {
           $(ps[i]).removeAttr('contenteditable')
@@ -129,17 +127,17 @@
             $(todos[i]).clone().prependTo('.list-group-finished')
           }
         }
-        // delete all deletion button
+        // remove deletion button on every todo
         var btns = $('.list-group-finished').find('button').toArray()
         for (let i = 0; i < btns.length; i++) {
           $(btns[i]).remove()
         }
-        // delete all checkbox 
+        // remove checkbox on every todo
         var checks = $('.list-group-finished').find('input').toArray()
         for (let i = 0; i < checks.length; i++) {
           $(checks[i]).remove()
         }
-        // make all p editable
+        // make all p non-editable
         var ps = $('.list-group-finished').find('p').toArray()
         for (let i = 0; i < ps.length; i++) {
           $(ps[i]).removeAttr('contenteditable')
@@ -148,7 +146,8 @@
 
       // count number of todos needed to be finished
       function getUnfinishedTodos() {
-        $('.todos-remaining').text(`剩餘 ${$('.todo').length} 個代辦事項`)
+        const remainingTodos = $('.list-group-all > .todo').length
+        $('.todos-remaining').text(`剩餘 ${remainingTodos} 個代辦事項`)
       }
 
       // html escape 
