@@ -15,7 +15,7 @@ sudo service nginx start
 
 ## 歡迎來到 nginx 的世界
 打開瀏覽器，輸入上 EC2 的公開實體 IPv4 位址，應該會看到 ```Welcome to nginx!``` 的歡迎字樣，代表成功跑起 nginx 囉
-![nginx歡迎畫面](https://i.imgur.com/dda4PnP.png)
+![nginx歡迎畫面](https://i.imgur.com/dda4PnP.png)<br>
 如果你到 ```/var/www/html``` 的資料夾底下你會看到 ```index.nginx-debian.html``` 的檔案名稱，這就是剛剛看到的網頁畫面原始碼
 ![nginx_html](https://i.imgur.com/HpTSKWZ.png)
 
@@ -67,7 +67,7 @@ location /phpmyadmin {
 }
 ```
 找到下列幾行設定，並取消註解圖片紅線標註的註解
-![](https://i.imgur.com/d5B2Kfk.png)
+![](https://i.imgur.com/d5B2Kfk.png)<br>
 都設定好了之後，就可把將 nginx 重啟看看結果囉～
 ```bash
 # 你也可以先透過 sudo nginx -t 檢查是否有無語法錯誤
