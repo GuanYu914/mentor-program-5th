@@ -100,7 +100,7 @@ sudo mysql_secure_installation
 ![禁止從遠端使用root](https://i.imgur.com/6E6HaSo.png)<br>
 輸入 y，移除測試用的資料庫
 ![移除測試用的資料庫](https://i.imgur.com/u1rmF8J.png)<br>
-輸入 y，重新載入特權表
+輸入 y，重新載入特權表<br>
 ![重新載入privilege](https://i.imgur.com/GMmB26e.png)<br>
 看到 all done，就代表設定完啦
 ![all_done_yayaya](https://i.imgur.com/lurCDT8.png)<br>
@@ -177,7 +177,7 @@ sudo chmod 775 html
 稍等一段時間，如果完成就會看到所有檔案已經在右邊視窗了
 ![上傳檔案完成](https://i.imgur.com/CfOYHoW.png)<br>
 **QA1. 開啟網站時發現沒有權限可以存取**
-萬一發現開啟網站出現這個情形怎麼辦
+萬一發現開啟網站出現這個情形怎麼辦<br>
 ![網站無法存取](https://i.imgur.com/J80GouZ.png)<br>
 原因是因為沒有設置給自己或群組以外的存取權限
 ![添加讀取權限](https://i.imgur.com/yVyclqO.png)<br>
